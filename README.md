@@ -1,2 +1,1 @@
-# under-the-hood-ml
-Relearning ML from first principles with An Introduction to Statistical Learning, Applied Predictive Modeling, and Hands-On Machine Learning with Scikit-Learn, Keras &amp; TensorFlow  beyond syntax.
+Relearning machine learning from first principles in Python after two years of classical ML in R. Guided by An Introduction to Statistical Learning, Applied Predictive Modeling, and Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow  focusing on depth, math, and intuition beyond syntax.
