@@ -58,7 +58,10 @@ If classifiers have error rate $\epsilon < 0.5$ and make independent errors, ens
 
 Prediction is the mode of individual predictions:
 
-$$\hat{y}(\mathbf{x}) = \underset{k \in \mathcal{Y}}{\operatorname{argmax}} \sum_{j=1}^{N} \mathbb{1}(h_j(\mathbf{x}) = k)$$
+$$
+\hat{y}(\mathbf{x}) = \arg\max_{k \in \mathcal{Y}} \sum_{j=1}^{N} \mathbb{1}\big(h_j(\mathbf{x}) = k\big)
+$$
+
 
 where:
 
@@ -116,7 +119,10 @@ The voting classifier typically outperforms individual classifiers, especially w
 
 When classifiers provide class probabilities $p_j(k|\mathbf{x})$, the ensemble predicts:
 
-$$\hat{y}(\mathbf{x}) = \underset{k \in \mathcal{Y}}{\operatorname{argmax}} \frac{1}{N}\sum_{j=1}^{N} p_j(k|\mathbf{x})$$
+$$
+\hat{y}(\mathbf{x}) = \arg\max_{k \in \mathcal{Y}} \frac{1}{N} \sum_{j=1}^{N} p_j(k \mid \mathbf{x})
+$$
+
 
 **Advantage:** Weights confident predictions more heavily. A classifier 99% certain contributes more than one that's 51% certain.
 
@@ -441,8 +447,10 @@ For b = 1 to B:
 
 **Prediction:**
 
-- **Regression**: $\hat{f}_{rf}(\mathbf{x}) = \frac{1}{B}\sum_{b=1}^{B} T_b(\mathbf{x})$
-- **Classification**: $\hat{y}_{rf}(\mathbf{x}) = \text{mode}\{T_1(\mathbf{x}), \ldots, T_B(\mathbf{x})\}$
+- **Regression**: $\hat{f}_{rf}(\mathbf{x}) = \frac{1}{B} \sum_{b=1}^{B} T_b(\mathbf{x})$
+
+- **Classification**: $\hat{y}_{rf}(\mathbf{x}) = \mathrm{mode}\{T_1(\mathbf{x}), \ldots, T_B(\mathbf{x})\}$
+
 
 ### 4.4 Python Implementation
 
@@ -696,7 +704,10 @@ $$w_{j+1}^{(i)} = w_j^{(i)} \cdot \exp(\alpha_j \cdot \mathbb{1}(h_j(\mathbf{x}^
 $$w_{j+1}^{(i)} \leftarrow \frac{w_{j+1}^{(i)}}{\sum_{k=1}^{m} w_{j+1}^{(k)}}$$
 
 **Final Prediction:**
-$$\hat{y}(\mathbf{x}) = \underset{k}{\operatorname{argmax}} \sum_{j=1}^{M} \alpha_j \cdot \mathbb{1}(h_j(\mathbf{x}) = k)$$
+$$
+\hat{y}(\mathbf{x}) = \arg\max_{k} \sum_{j=1}^{M} \alpha_j \cdot \mathbb{1}\big(h_j(\mathbf{x}) = k\big)
+$$
+
 
 #### 5.2.2 Intuition Behind Formulas
 
@@ -941,7 +952,10 @@ The negative gradient becomes the deviance residuals, which are more complex but
 #### 5.3.2 Algorithm: Gradient Boosting for Regression
 
 **Initialization:**
-$$F_0(\mathbf{x}) = \underset{\gamma}{\operatorname{argmin}} \sum_{i=1}^{m} L(y^{(i)}, \gamma)$$
+$$
+F_0(\mathbf{x}) = \arg\min_{\gamma} \sum_{i=1}^{m} L\big(y^{(i)}, \gamma\big)
+$$
+
 
 For squared loss: $F_0(\mathbf{x}) = \bar{y}$ (mean of training targets)
 
@@ -953,7 +967,11 @@ $$r_m^{(i)} = -\left[\frac{\partial L(y^{(i)}, F(\mathbf{x}^{(i)}))}{\partial F(
    For squared loss: $r_m^{(i)} = y^{(i)} - F_{m-1}(\mathbf{x}^{(i)})$
 
 2. **Fit base learner** $h_m(\mathbf{x})$ to pseudo-residuals:
-$$h_m = \underset{h}{\operatorname{argmin}} \sum_{i=1}^{n} (r_m^{(i)} - h(\mathbf{x}^{(i)}))^2$$
+
+$$
+h_m = \arg\min_{h} \sum_{i=1}^{n} \big(r_m^{(i)} - h(\mathbf{x}^{(i)})\big)^2
+$$
+
 
 3. **Update ensemble:**
 $$F_m(\mathbf{x}) = F_{m-1}(\mathbf{x}) + \eta \cdot h_m(\mathbf{x})$$
