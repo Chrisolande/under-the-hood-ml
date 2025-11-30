@@ -1147,7 +1147,6 @@ class ClusteringPipeline:
         return eps
 
 
-# Example usage
 if __name__ == "__main__":
     # Generate sample data
     from sklearn.datasets import make_blobs
