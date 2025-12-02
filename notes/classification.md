@@ -1,7 +1,3 @@
-This is an in-depth explanation of confusion matrices, precision, recall, and their inherent trade-off, as detailed in the sources regarding classifier performance measures.
-
----
-
 ## 1. Confusion Matrices
 
 A **confusion matrix (CM)** is a crucial tool for evaluating the performance of a classifier. The general concept involves counting the number of times instances of an **actual class (A)** are classified as a **predicted class (B)**, accounting for all possible A/B pairs.
